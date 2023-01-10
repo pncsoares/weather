@@ -44,6 +44,7 @@ body {
   background-color: var(--dark-blue-300);
   color: var(--light-blue-200);
   padding: 1rem;
+  border-radius: 0;
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;

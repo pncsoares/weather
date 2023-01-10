@@ -1,14 +1,15 @@
 {
   "name": "weather",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "format": "npx prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "save-version": "npm i --package-lock-only"
   },
   "devDependencies": {
     "husky": "^8.0.0",

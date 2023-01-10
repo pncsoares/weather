@@ -1,19 +1,86 @@
+:root {
+  --light-blue-100: hsl(200, 100%, 90%);
+  --light-blue-200: hsl(200, 100%, 85%);
+  --light-blue-300: hsl(200, 100%, 80%);
+  --dark-blue-100: hsl(200, 100%, 30%);
+  --dark-blue-200: hsl(200, 100%, 20%);
+  --dark-blue-300: hsl(200, 100%, 10%);
+}
+
 *,
 *::after,
 *::before {
   box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 body {
   margin: 0;
-  background-color: hsl(200, 100%, 85%);
-  color: hsl(200, 100%, 10%);
+  background-color: var(--light-blue-100);
+  color: var(--dark-blue-300);
   font-family: sans-serif;
 }
 
 .blurred {
   filter: blur(3px);
   overflow: hidden;
+}
+
+.search-container {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 3rem;
+  width: 100%;
+  z-index: 10;
+}
+
+.search-box {
+  border: none;
+  width: 80%;
+  background-color: var(--dark-blue-300);
+  color: var(--light-blue-200);
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+::placeholder {
+  color: var(--light-blue-200);
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: var(--light-blue-200);
+}
+
+::-ms-input-placeholder {
+  color: var(--light-blue-200);
+}
+
+.search-button {
+  border: none;
+  background-color: var(--dark-blue-200);
+  width: 20%;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.search-button:hover {
+  background-color: var(--dark-blue-100);
+  transition: background-color 200ms;
+}
+
+.place-name {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
 }
 
 .header {
@@ -28,7 +95,7 @@ body {
   justify-content: center;
   margin: 0.5rem;
   padding: 0.5rem;
-  border-right: 2px solid hsl(200, 100%, 10%);
+  border-right: 2px solid var(--dark-blue-300);
 }
 
 .weather-icon {
@@ -52,7 +119,7 @@ body {
   width: 50%;
   justify-content: space-around;
   gap: 0.5rem;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
   grid-template-rows: repeat(2, auto);
 }
 
@@ -66,7 +133,7 @@ body {
   text-transform: uppercase;
   font-weight: bold;
   font-size: 0.6rem;
-  color: hsl(200, 100%, 20%);
+  color: var(--dark-blue-200);
 }
 
 .value-sub-info {
@@ -76,24 +143,24 @@ body {
 
 .day-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 75px);
+  grid-template-columns: repeat(auto-fit, 80px);
   gap: 0.5rem;
   justify-content: center;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .day-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid hsl(200, 100%, 10%);
+  border: 1px solid var(--dark-blue-300);
   border-radius: 0.25rem;
   padding: 0.25rem;
 }
 
 .day-card-day {
   font-size: 0.75rem;
-  color: hsl(200, 100%, 20%);
+  color: var(--dark-blue-200);
   margin-top: 0.5rem;
 }
 
@@ -104,13 +171,40 @@ body {
 }
 
 .hour-row {
-  background-color: hsl(200, 60%, 75%);
+  background-color: var(--light-blue-200);
 }
 
 .hour-row:nth-child(2n) {
-  background-color: hsl(200, 60%, 70%);
+  background-color: var(--light-blue-100);
 }
 
 .hour-row > td {
   padding: 0.25rem 0.5rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  text-align: center;
+  background-color: var(--dark-blue-300);
+  color: var(--light-blue-200);
+  font-size: 0.75rem;
+  padding: 0.5rem;
+  z-index: 10;
+}
+
+.github-link {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--light-blue-200);
+  transition: opacity 200ms;
+}
+
+.github-link:hover {
+  opacity: 40%;
+  transition: opacity 200ms;
 }

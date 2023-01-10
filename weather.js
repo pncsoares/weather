@@ -50,6 +50,7 @@ function parseDailyWeather({ daily }) {
       timestamp: time * 1000,
       iconCode: daily.weathercode[index],
       maxTemp: Math.round(daily.temperature_2m_max[index]),
+      lowTemp: Math.round(daily.temperature_2m_min[index]),
     };
   });
 }

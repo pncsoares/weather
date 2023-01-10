@@ -1,7 +1,14 @@
 import { ICON_MAP } from './iconMap';
 import { getWeather } from './weather';
+import { getPlaceDetails } from './location';
 
-navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
+const searchBox = document.getElementById('searchBox');
+const searchButton = document.getElementById('searchButton');
+const placeName = document.getElementById('placeName');
+
+searchButton.addEventListener('click', () => search());
+
+// navigator.geolocation.getCurrentPosition(positionSuccess, positionError);
 
 function positionSuccess({ coords }) {
   getWeather(coords.latitude, coords.longitude, Intl.DateTimeFormat().resolvedOptions().timeZone)
@@ -18,12 +25,39 @@ function positionError(position) {
   );
 }
 
+async function search() {
+  const place = searchBox.value;
+
+  if (!place) {
+    return;
+  }
+
+  const placeDetails = await getPlaceDetails(place);
+
+  const { latitude, longitude } = placeDetails.coordinates;
+
+  placeName.textContent = placeDetails.placeName.placeName;
+
+  if (latitude && longitude) {
+    getWeather(latitude, longitude, Intl.DateTimeFormat().resolvedOptions().timeZone)
+      .then(renderWeather)
+      .catch((e) => {
+        console.error(e);
+        alert('Error getting weather.');
+      });
+  } else {
+    alert('Invalid place. Please enter a new one and try again.');
+  }
+}
+
+const weatherContainer = document.querySelector('.weather-container');
+
 function renderWeather({ current, daily, hourly }) {
   renderCurrentWeather(current);
   renderDailyWeather(daily);
   renderHourlyWeather(hourly);
 
-  document.body.classList.remove('blurred');
+  weatherContainer.classList.remove('blurred');
 }
 
 const currentIcon = document.querySelector('[data-current-icon]');
@@ -34,8 +68,6 @@ function renderCurrentWeather(current) {
   setValue('current-temp', current.currentTemp);
   setValue('current-high', current.highTemp);
   setValue('current-low', current.lowTemp);
-  setValue('current-fl-high', current.highFeelsLike);
-  setValue('current-fl-low', current.lowFeelsLike);
   setValue('current-wind', current.windSpeed);
   setValue('current-precip', current.precip);
 }
@@ -43,7 +75,7 @@ function renderCurrentWeather(current) {
 const dailySection = document.querySelector('[data-day-section]');
 const dayCardTemplate = document.getElementById('day-card-template');
 
-const DAY_FORMATTER = new Intl.DateTimeFormat(undefined, { weekday: 'long' });
+const DAY_FORMATTER = new Intl.DateTimeFormat(undefined, { weekday: 'short' });
 
 function renderDailyWeather(daily) {
   dailySection.innerHTML = '';
@@ -51,8 +83,9 @@ function renderDailyWeather(daily) {
   daily.forEach((day) => {
     const dayCard = dayCardTemplate.content.cloneNode(true);
 
-    setValue('temp', day.maxTemp, { parent: dayCard });
     setValue('date', DAY_FORMATTER.format(day.timestamp), { parent: dayCard });
+    setValue('temp-high', day.maxTemp, { parent: dayCard });
+    setValue('temp-low', day.lowTemp, { parent: dayCard });
 
     dayCard.querySelector('[data-icon]').src = getIconUrl(day.iconCode);
 
@@ -72,7 +105,6 @@ function renderHourlyWeather(hourly) {
     const hourCard = hourRowTemplate.content.cloneNode(true);
 
     setValue('temp', hour.temp, { parent: hourCard });
-    setValue('fl-temp', hour.feelsLike, { parent: hourCard });
     setValue('wind', hour.windSpeed, { parent: hourCard });
     setValue('precip', hour.precip, { parent: hourCard });
     setValue('day', DAY_FORMATTER.format(hour.timestamp), { parent: hourCard });

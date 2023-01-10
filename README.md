@@ -7,7 +7,7 @@ Don't be wet 💦
 - [x] Current weather in user location
 - [x] Hourly forecast for user location
 - [x] Daily forecast for user location
-- [ ] Search by location
+- [x] Search by location
 - [ ] Hourly forecast grouped by day
 
 # Technologies
@@ -16,6 +16,11 @@ Don't be wet 💦
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [Vite](https://vitejs.dev/guide/)
+
+# Integrations
+
+- [MapBox Search API](https://docs.mapbox.com/api/search/)
+- [Open-Meteo API](https://open-meteo.com/en/docs)
 
 # Setup
 

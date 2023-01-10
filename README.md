@@ -4,12 +4,11 @@ Don't be wet 💦
 
 # Features
 
-- [x] View latest radars (plain text)
-- [x] Filter by location
-- [ ] Browser notifications (new radares in selected county)
-- [x] Terms and Conditions page
-- [x] Privacy policy page
-- [ ] View radars history
+- [x] Current weather in user location
+- [x] Hourly forecast for user location
+- [x] Daily forecast for user location
+- [ ] Search by location
+- [ ] Hourly forecast grouped by day
 
 # Technologies
 

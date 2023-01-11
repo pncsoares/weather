@@ -13,10 +13,10 @@
   box-sizing: border-box;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  margin: 0;
 }
 
 body {
-  margin: 0;
   background-color: var(--light-blue-100);
   color: var(--dark-blue-300);
   font-family: sans-serif;
@@ -40,11 +40,11 @@ body {
 
 .search-box {
   border: none;
+  border-radius: 0;
   width: 80%;
   background-color: var(--dark-blue-300);
   color: var(--light-blue-200);
   padding: 1rem;
-  border-radius: 0;
   font-weight: bold;
   font-size: 1rem;
   text-transform: uppercase;

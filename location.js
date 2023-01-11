@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 export async function getPlaceDetails(place) {
-  // const accessToken = process.env.MAPBOX_API_KEY;
-  const accessToken =
-    'pk.eyJ1IjoicG5jc29hcmVzIiwiYSI6ImNsY3FkcnpmdDAybmczcHAzam4xZmtqZHAifQ.smHORCVQm_XTW3hG4aJQ7g';
+  const accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
 
   return await axios
     .get(

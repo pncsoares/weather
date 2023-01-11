@@ -19,8 +19,8 @@ function parseCoordinates({ features }) {
   const { center } = features[0];
 
   return {
-    latitude: center[0],
-    longitude: center[1],
+    latitude: center[1],
+    longitude: center[0],
   };
 }
 

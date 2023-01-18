@@ -1,11 +1,9 @@
 import axios from 'axios';
 
 export async function getPlaceDetails(place) {
-  const accessToken = import.meta.env.VITE_MAPBOX_API_KEY;
-
   return await axios
     .get(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?limit=1&types=place%2Cpostcode%2Caddress&access_token=${accessToken}`
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?limit=1&types=place%2Cpostcode%2Caddress&access_token=pk.eyJ1IjoicG5jc29hcmVzIiwiYSI6ImNsY3JmOGdqNDA0cm0zc3AxMWRycnVqN2wifQ.RPtWQnFfBDD4_16IC23VhQ`
     )
     .then(({ data }) => {
       return {
